@@ -28,7 +28,7 @@ class DbSMSGateway implements SmsGatewayInterface {
      * @return string
      * @throws GuzzleException
      */
-    public static function send( array $data ): string {
+    public function send( array $data ): string {
         if ( !env( 'SMS_ENABLED', false ) ) {
             return 'SMS Sending disabled';
         }
@@ -55,7 +55,11 @@ class DbSMSGateway implements SmsGatewayInterface {
         ];
     }
 
-    public static function sendOtp( array $data ): string {
+    public function sendOtp( array $data ): string {
+        if ( !env( 'SMS_ENABLED', false ) ) {
+            return 'SMS Sending disabled';
+        }
+
         $number = $data[ self::KEY_PHONE ];
         $message = $data[ self::KEY_MESSAGE ];
 

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\Email\SMTPService;
 use App\Services\SMS\DbSMSGateway;
+use App\Services\SMS\EightXEightService;
 use App\Services\SMS\TextLocalService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -22,6 +23,10 @@ class AppServiceProvider extends ServiceProvider {
 
         if ( !class_exists( 'SMTPService' ) ) {
             class_alias( SMTPService::class, 'SMTPService' );
+        }
+
+        if ( !class_exists( 'EightXEightService' ) ) {
+            class_alias( EightXEightService::class, 'EightXEightService' );
         }
 
         if ( !class_exists( 'DbSMSGateway' ) ) {

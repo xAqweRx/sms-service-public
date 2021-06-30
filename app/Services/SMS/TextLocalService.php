@@ -27,7 +27,7 @@ class TextLocalService implements SmsGatewayInterface {
      * @throws Exception
      * @throws GuzzleException
      */
-    public static function send( array $data ): string {
+    public function send( array $data ): string {
         if ( !env( 'SMS_ENABLED', false ) ) {
             return 'SMS Sending disabled';
         }
@@ -107,7 +107,7 @@ class TextLocalService implements SmsGatewayInterface {
     /**
      * @throws GuzzleException
      */
-    public static function sendOtp( array $data ): string {
-        return self::send( $data );
+    public function sendOtp( array $data ): string {
+        return $this->send( $data );
     }
 }
